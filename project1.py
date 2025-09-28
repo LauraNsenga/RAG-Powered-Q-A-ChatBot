@@ -13,7 +13,7 @@ First, we need to install the necessary libraries.
 
 !pip install streamlit transformers langchain faiss-cpu sentence-transformers langchain-community torch PyMuPDF pyngrok
 
-print("✅ All packages installed successfully!")
+print("All packages installed successfully!")
 
 """# Reset and Reconfigure ngrok
 
@@ -36,14 +36,14 @@ import os
 # Kill existing ngrok processes
 try:
     subprocess.run(["pkill", "-f", "ngrok"], check=False)
-    print("🔄 Killed existing ngrok processes")
+    print("Killed existing ngrok processes")
 except:
     pass
 
 # Disconnect all tunnels
 try:
     ngrok.kill()
-    print("🔌 Disconnected all tunnels")
+    print("Disconnected all tunnels")
 except:
     pass
 
@@ -51,7 +51,7 @@ except:
 ngrok_config_path = os.path.expanduser("~/.ngrok2/ngrok.yml")
 if os.path.exists(ngrok_config_path):
     os.remove(ngrok_config_path)
-    print("🗑️ Cleared old ngrok config")
+    print("Cleared old ngrok config")
 
 # IMPORTANT: Replace with your actual ngrok token from step 1
 NGROK_TOKEN = "317DzPv5yvjSLPjKVDhBmOCVKok_7s89d3r7a5gTN88BSztLC"
@@ -59,8 +59,8 @@ NGROK_TOKEN = "317DzPv5yvjSLPjKVDhBmOCVKok_7s89d3r7a5gTN88BSztLC"
 # Set ngrok auth token
 ngrok.set_auth_token(NGROK_TOKEN)
 
-print("✅ Ngrok setup complete!")
-print("🔗 Make sure you replaced YOUR_NGROK_TOKEN_HERE with your actual token")
+print("Ngrok setup complete!")
+print("Make sure you replaced YOUR_NGROK_TOKEN_HERE with your actual token")
 
 """## Create the app.py file for Streamlit
 
@@ -199,7 +199,7 @@ This cell writes a **Streamlit application** to `app.py` that lets you ask quest
 #                 os.unlink(tmp_file_path)
 # 
 #                 # Show some stats
-#                 st.subheader("📊 Document Stats")
+#                 st.subheader("Document Stats")
 #                 st.metric("Characters", len(pdf_text))
 #                 st.metric("Words (approx)", len(pdf_text.split()))
 # 
@@ -210,14 +210,14 @@ This cell writes a **Streamlit application** to `app.py` that lets you ask quest
 #     st.divider()
 # 
 #     # Model info
-#     st.subheader("🤖 Model Info")
+#     st.subheader("Model Info")
 #     st.info("**Model**: microsoft/Phi-3-mini-4k-instruct\\n**Purpose**: RAG-based Q&A")
 # 
 #     # GPU info
 #     if torch.cuda.is_available():
-#         st.success(f"🚀 GPU Available: {torch.cuda.get_device_name()}")
+#         st.success(f"GPU Available: {torch.cuda.get_device_name()}")
 #     else:
-#         st.info("💻 Running on CPU")
+#         st.info(" Running on CPU")
 # 
 # # Initialize session state
 # if 'pdf_processed' not in st.session_state:
@@ -241,7 +241,7 @@ This cell writes a **Streamlit application** to `app.py` that lets you ask quest
 #             qa_chain = create_qa_chain(llm, vectorstore)
 # 
 #             if qa_chain is not None:
-#                 st.success("✅ Chatbot is ready! Ask questions about your document.")
+#                 st.success("Chatbot is ready! Ask questions about your document.")
 # 
 #                 # Display chat history
 #                 for message in st.session_state['messages']:
@@ -347,19 +347,19 @@ streamlit_thread = threading.Thread(target=run_streamlit)
 streamlit_thread.daemon = True
 streamlit_thread.start()
 
-print("🚀 Starting Streamlit server...")
-print("⏱️  Please wait 10-15 seconds...")
+print("Starting Streamlit server...")
+print("Please wait 10-15 seconds...")
 time.sleep(10)
 
 """## Create public URL for Streamlit"""
 
 # Create public tunnel
 public_url = ngrok.connect(8501)
-print(f"🌐 Your Streamlit app is live at: {public_url}")
-print(f"🔗 Click the link above to access your chatbot!")
+print(f"Your Streamlit app is live at: {public_url}")
+print(f"Click the link above to access your chatbot!")
 print(f"📱 You can also share this URL with others")
 print()
-print("📝 Instructions:")
+print("Instructions:")
 print("1. Click the public URL above")
 print("2. Your PDF is already processed!")
 print("3. Start asking questions immediately!")
@@ -368,16 +368,16 @@ print("⚠️  Keep this Colab notebook running to maintain the connection")
 
 import time
 
-print("🔄 Keeping the server alive...")
-print("📊 Server status: Running")
-print("🌐 Public URL:", public_url)
+print("Keeping the server alive...")
+print("Server status: Running")
+print("Public URL:", public_url)
 print()
-print("💡 Your chatbot is ready to use!")
-print("📋 Document already processed and loaded")
-print("🎯 You can start asking questions immediately")
+print("Your chatbot is ready to use!")
+print("Document already processed and loaded")
+print("You can start asking questions immediately")
 print()
 print("To stop the server, interrupt this cell or restart the runtime")
-print("⏰ Server will run until you stop this cell...")
+print("Server will run until you stop this cell...")
 
 try:
     while True:
@@ -386,4 +386,4 @@ try:
 except KeyboardInterrupt:
     print("\n🛑 Server stopped by user")
     ngrok.disconnect(public_url)
-    print("🔌 Ngrok tunnel closed")
+    print(" Ngrok tunnel closed")
